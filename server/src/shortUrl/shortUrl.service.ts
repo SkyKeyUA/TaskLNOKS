@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ShortUrl } from './entities/shortUrl.entity';
 import { nanoid } from 'nanoid';
+import { validateUrl } from '../utils/utils';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class UrlShortService {
@@ -11,8 +13,12 @@ export class UrlShortService {
   ) {}
 
   async createShortUrl(longUrl: string): Promise<ShortUrl> {
+    if (!validateUrl(longUrl)) {
+      throw new Error('Invalid URL format.');
+    }
+
     const id = nanoid(5);
-    const shortUrl = `https://${id}`;
+    const shortUrl = id;
 
     const newShortUrl: ShortUrl = new this.shortUrlModel({
       longUrl,
@@ -27,7 +33,7 @@ export class UrlShortService {
     if (found) {
       return found.longUrl;
     } else {
-      throw new Error('Short URL does not exist.');
+      throw new NotFoundException('Short URL does not exist.');
     }
   }
 

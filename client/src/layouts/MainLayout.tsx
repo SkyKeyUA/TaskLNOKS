@@ -15,7 +15,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {children}
+      </main>
       <Footer />
     </>
   );

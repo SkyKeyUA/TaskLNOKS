@@ -7,9 +7,16 @@ const HomePage = () => {
   return (
     <>
       <MainLayout>
-        <div className="center">
-          <h1>Home Page</h1>
-          <h3>The best Url in the world!</h3>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          className="center">
+          <h1 style={{ fontSize: 24, fontWeight: 'bold', marginBottom: '20px' }}>Url converter</h1>
+          <h3 style={{ fontSize: 16, color: 'gray' }}>The best Url in the world!</h3>
         </div>
       </MainLayout>
     </>

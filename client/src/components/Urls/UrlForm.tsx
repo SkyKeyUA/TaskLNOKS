@@ -18,6 +18,11 @@ export const UrlForm: React.FC = () => {
     };
     axios.post(`${process.env.REACT_APP_API_URL}/shortUrl`, formData).catch((e) => {
       console.log(e);
+      if (e.response?.status === 500) {
+        alert('Your long Url is invalid');
+      } else {
+        alert('An error occurred. Please try again.');
+      }
     });
     dispatch(fetchShortUrls());
   };

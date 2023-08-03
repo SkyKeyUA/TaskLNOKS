@@ -12,11 +12,11 @@ import { UrlShortService } from './shortUrl.service';
 
 @Controller('/shortUrl')
 export class UrlShortController {
-  constructor(private readonly urlShortService: UrlShortService) {}
+  constructor(private urlShortService: UrlShortService) {}
 
   @Post()
-  createShortUrl(@Body() createShortUrlDto: CreateShortUrlDto) {
-    return this.urlShortService.createShortUrl(createShortUrlDto.longUrl);
+  create(@Body() dto: CreateShortUrlDto) {
+    return this.urlShortService.create(dto);
   }
 
   @Get(':shortUrl')
@@ -34,7 +34,7 @@ export class UrlShortController {
   }
 
   @Get()
-  getAllShortUrls() {
-    return this.urlShortService.getAllShortUrls();
+  getAll() {
+    return this.urlShortService.getAll();
   }
 }

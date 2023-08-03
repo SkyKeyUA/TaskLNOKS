@@ -1,12 +1,14 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
+
+export type ShortDocument = HydratedDocument<ShortUrl>;
 
 @Schema()
-export class ShortUrl extends Document {
-  @Prop({ required: true })
+export class ShortUrl {
+  @Prop()
   longUrl: string;
 
-  @Prop({ required: true })
+  @Prop()
   shortUrl: string;
 }
 

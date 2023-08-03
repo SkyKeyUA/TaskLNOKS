@@ -5,6 +5,7 @@ import { ShortUrl } from './entities/shortUrl.entity';
 import { nanoid } from 'nanoid';
 import { validateUrl } from '../utils/utils';
 import { NotFoundException } from '@nestjs/common';
+import { CreateShortUrlDto } from './dto/create-shortUrl.dto';
 
 @Injectable()
 export class UrlShortService {
@@ -12,20 +13,20 @@ export class UrlShortService {
     @InjectModel(ShortUrl.name) private readonly shortUrlModel: Model<ShortUrl>,
   ) {}
 
-  async createShortUrl(longUrl: string): Promise<ShortUrl> {
-    if (!validateUrl(longUrl)) {
+  async create(dto: CreateShortUrlDto): Promise<ShortUrl> {
+    if (!validateUrl(dto.longUrl)) {
       throw new Error('Invalid URL format.');
     }
 
     const id = nanoid(5);
     const shortUrl = id;
 
-    const newShortUrl: ShortUrl = new this.shortUrlModel({
-      longUrl,
+    const newShortUrl: ShortUrl = await this.shortUrlModel.create({
+      ...dto,
       shortUrl,
     });
 
-    return newShortUrl.save();
+    return newShortUrl;
   }
 
   async getLongUrl(shortUrl: string): Promise<string> {
@@ -37,7 +38,7 @@ export class UrlShortService {
     }
   }
 
-  async getAllShortUrls(): Promise<ShortUrl[]> {
+  async getAll(): Promise<ShortUrl[]> {
     return this.shortUrlModel.find().exec();
   }
 }

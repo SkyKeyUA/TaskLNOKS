@@ -10,13 +10,10 @@ import React from 'react';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const { shortUrls, statusUrls } = useShortUrlsSelector();
+  const { shortUrls } = useShortUrlsSelector();
   React.useEffect(() => {
     dispatch(fetchShortUrls());
   }, []);
-  if (statusUrls === 'loading') {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
@@ -30,7 +27,7 @@ const HomePage = () => {
           }}
           className="center">
           <h1 style={{ fontSize: 24, fontWeight: 'bold', marginBottom: '20px' }}>Url converter</h1>
-          <UrlForm shortUrls={shortUrls} />
+          <UrlForm />
           <h3 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>
             The best Url in the world!
           </h3>

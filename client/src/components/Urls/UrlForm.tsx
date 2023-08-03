@@ -6,27 +6,19 @@ import { useInput } from '@/hooks/useInput';
 import axios from '@/api';
 import { useAppDispatch } from '@/hooks/redux';
 import { fetchShortUrls } from '@/redux/reducers/shortUrl/asyncActions';
-import { IShortUrl } from '@/types/shortUrl';
-import { useRouter } from 'next/router';
+import { useShortUrlsSelector } from '@/redux/reducers/shortUrl/selectors';
 
-interface shortUrlListProps {
-  shortUrls: IShortUrl[];
-}
-
-export const UrlForm: React.FC<shortUrlListProps> = ({ shortUrls }) => {
-  const router = useRouter();
+export const UrlForm: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { shortUrls, statusUrls } = useShortUrlsSelector();
   const longUrl = useInput('');
   const sendForm = () => {
     const formData = {
       longUrl: longUrl.value,
     };
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/shortUrl`, formData)
-      .then((res) => router.push(`${process.env.REACT_APP}`))
-      .catch((e) => {
-        console.log(e);
-      });
+    axios.post(`${process.env.REACT_APP_API_URL}/shortUrl`, formData).catch((e) => {
+      console.log(e);
+    });
     dispatch(fetchShortUrls());
   };
   return (
@@ -41,11 +33,15 @@ export const UrlForm: React.FC<shortUrlListProps> = ({ shortUrls }) => {
         Send
       </button>
       <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>
-        {shortUrls.length > 0
-          ? `This is your last short Url: ${process.env.REACT_APP_API_URL}/shortUrl/${
-              shortUrls[shortUrls.length - 1].shortUrl
-            }`
-          : ''}
+        {statusUrls === 'loading' ? (
+          <div>Loading...</div>
+        ) : shortUrls.length > 0 ? (
+          `This is your last short Url: ${process.env.REACT_APP_API_URL}/shortUrl/${
+            shortUrls[shortUrls.length - 1].shortUrl
+          }`
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

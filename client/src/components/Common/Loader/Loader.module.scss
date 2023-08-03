@@ -1,0 +1,54 @@
+/** @format */
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: animateBg 10s linear infinite;
+}
+
+.body {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(calc(18deg * var(--i)));
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #791883;
+      box-shadow: 0 0 10px #791883, 0 0 20px #791883, 0 0 40px #791883, 0 0 60px #791883,
+        0 0 80px #791883, 0 0 100px #791883;
+      animation: animate 2s linear infinite;
+      animation-delay: calc(0.1s * var(--i));
+    }
+  }
+}
+@keyframes animateBg {
+  0% {
+    filter: hue-rotate(0 deg);
+  }
+  100% {
+    filter: hue-rotate(360 deg);
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    transform: scale(0);
+  }
+}

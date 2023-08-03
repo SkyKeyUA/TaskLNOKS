@@ -12,9 +12,11 @@ interface shortUrlListProps {
 export const UrlList: React.FC<shortUrlListProps> = ({ shortUrls }) => {
   return (
     <ul className={styles.root}>
-      {shortUrls.map(({ shortUrl, _id, longUrl }) => (
+      {shortUrls.map(({ shortUrl, _id, longUrl }, i) => (
         <li key={_id}>
-          <Link href={longUrl}>{shortUrl}</Link>
+          <Link href={longUrl}>
+            {i + 1}: {shortUrl}
+          </Link>
         </li>
       ))}
     </ul>

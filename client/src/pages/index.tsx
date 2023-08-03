@@ -31,7 +31,7 @@ const HomePage = () => {
           className="center">
           <h1 style={{ fontSize: 24, fontWeight: 'bold', marginBottom: '20px' }}>Url converter</h1>
           <UrlForm shortUrls={shortUrls} />
-          <h3 style={{ fontSize: 16, color: 'gray', marginBottom: '20px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>
             The best Url in the world!
           </h3>
           {shortUrls.length > 0 ? (

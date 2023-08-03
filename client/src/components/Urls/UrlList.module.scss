@@ -1,0 +1,15 @@
+/** @format */
+
+.root {
+  font-size: 24px;
+  li {
+    margin-bottom: 20px;
+    a {
+      transition: all 0.3s ease 0s;
+      color: blue;
+      &:hover {
+        color: yellow;
+      }
+    }
+  }
+}

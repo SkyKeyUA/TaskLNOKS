@@ -1,5 +1,6 @@
 /** @format */
 
+import { UrlForm } from '@/components/Urls/UrlForm';
 import { UrlList } from '@/components/Urls/UrlList';
 import { useAppDispatch } from '@/hooks/redux';
 import MainLayout from '@/layouts/MainLayout';
@@ -29,13 +30,14 @@ const HomePage = () => {
           }}
           className="center">
           <h1 style={{ fontSize: 24, fontWeight: 'bold', marginBottom: '20px' }}>Url converter</h1>
+          <UrlForm shortUrls={shortUrls} />
           <h3 style={{ fontSize: 16, color: 'gray', marginBottom: '20px' }}>
             The best Url in the world!
           </h3>
           {shortUrls.length > 0 ? (
             <UrlList shortUrls={shortUrls} />
           ) : (
-            <div style={{ fontSize: '24px', fontWeight: 'bold' }}>No short URLs found.</div>
+            <div style={{ fontSize: '24px', fontWeight: 'bold' }}>No one short Url not found.</div>
           )}
         </div>
       </MainLayout>

@@ -24,12 +24,29 @@ export const fetchShortUrls = createAsyncThunk<IShortUrl[]>(
   },
 );
 
+// export const fetchShortUrls = createAsyncThunk<IShortUrl[]>(
+// 	'urls/fetchUrls',
+// 	async (_, { dispatch, rejectWithValue }) => {
+// 	  try {
+// 		 const response = await UrlService.fetchUrl();
+// 		 dispatch(setUrls(response));
+// 		 return response;
+// 	  } catch (e) {
+// 		 const err = e as AxiosError;
+// 		 if (!err.response) {
+// 			throw err;
+// 		 }
+// 		 return rejectWithValue(err.response);
+// 	  }
+// 	},
+//  );
+
 export const fetchLongUrl = createAsyncThunk(
   'urls/fetchLongUrl',
   async (longUrl: { longUrl: string }) => {
     try {
       const response = await UrlService.sendForm(longUrl);
-      return response;
+      return response.data;
     } catch (err) {
       const e = err as AxiosError;
       console.log(e);

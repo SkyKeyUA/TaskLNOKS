@@ -2,12 +2,11 @@
 
 import React from 'react';
 import styles from './UrlForm.module.scss';
-import { useInput } from '@/hooks/useInput';
-import axios from '@/api';
-import { useAppDispatch } from '@/hooks/redux';
-import { fetchLongUrl, fetchShortUrls } from '@/redux/reducers/shortUrl/asyncActions';
-import { useShortUrlsSelector } from '@/redux/reducers/shortUrl/selectors';
-import { Loader } from '../Common/Loader';
+import { useAppDispatch } from '@hooks/redux';
+import { useShortUrlsSelector } from '@redux/reducers/shortUrl/selectors';
+import { useInput } from '@hooks/useInput';
+import { fetchLongUrl, fetchShortUrls } from '@redux/reducers/shortUrl/asyncActions';
+import { Loader } from '@components/Common/Loader';
 
 export const UrlForm: React.FC = () => {
   const dispatch = useAppDispatch();

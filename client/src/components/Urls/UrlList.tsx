@@ -1,9 +1,9 @@
 /** @format */
 
-import { IShortUrl } from '@/types/shortUrl';
 import Link from 'next/link';
 import React from 'react';
 import styles from './UrlList.module.scss';
+import { IShortUrl } from '@typings/shortUrl';
 
 interface shortUrlListProps {
   shortUrls: IShortUrl[];

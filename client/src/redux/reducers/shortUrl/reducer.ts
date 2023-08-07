@@ -20,12 +20,12 @@ const shortUrlsReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state, action: AnyAction) => {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    });
+    //  builder.addCase(HYDRATE, (state, action: AnyAction) => {
+    //    return {
+    //      ...state,
+    //      ...action.payload,
+    //    };
+    //  });
     builder.addCase(fetchShortUrls.pending, (state) => {
       state.shortUrls = [];
       state.statusUrls = Status.LOADING;

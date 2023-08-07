@@ -5,3 +5,7 @@ export interface IShortUrl {
   longUrl: string;
   shortUrl: string;
 }
+
+export interface ILongUrl {
+  longUrl: string;
+}

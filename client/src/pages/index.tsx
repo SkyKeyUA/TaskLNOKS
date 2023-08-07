@@ -1,10 +1,10 @@
 /** @format */
 
-import { UrlForm } from '@/components/Urls/UrlForm';
-import { UrlList } from '@/components/Urls/UrlList';
-import { useAppDispatch } from '@/hooks/redux';
-import { fetchShortUrls } from '@/redux/reducers/shortUrl/asyncActions';
-import { useShortUrlsSelector } from '@/redux/reducers/shortUrl/selectors';
+import { UrlForm } from '@components/Urls/UrlForm';
+import { UrlList } from '@components/Urls/UrlList';
+import { useAppDispatch } from '@hooks/redux';
+import { fetchShortUrls } from '@redux/reducers/shortUrl/asyncActions';
+import { useShortUrlsSelector } from '@redux/reducers/shortUrl/selectors';
 import React from 'react';
 
 const HomePage = () => {
